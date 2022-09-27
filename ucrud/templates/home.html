@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<!-- msg -->
+{% block msg %}
+{% if messages %}
+<ul class="messages alert-primary">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock msg %}
+
+{% block content %}
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Username</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in username %}
+      <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.email}}</td>
+        <td>
+        <a class='btn btn-info btn-sm' id="edit" href="edit/{{user.id}}/">Edit</a>
+         <a class='btn btn-danger btn-sm' id="delete" href="delete/{{user.id}}/">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+
+{% endblock content %}

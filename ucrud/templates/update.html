@@ -1,0 +1,50 @@
+<!-- add base file -->
+{% extends 'base.html' %}
+
+
+<!-- add title -->
+{% block title %}AddUser{% endblock title %}
+<!-- msg -->
+{% block msg %}
+{% if messages %}
+<ul class="messages alert-primary">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock msg %}
+<style>
+
+</style>
+<!-- content body -->
+{% block content %}
+<div class="container" style="margin-left:30%;">
+    <div class="h-15 w-50" style="border:3px solid blue;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for user in username %}
+            <div class="form-group m-2">
+            <label>Username</label><input value="{{user.username}}" name="username" class='form-control' type="text" required>
+            </div>
+            <div class="form-group m-2">
+            <label>FirstName</label><input value="{{user.first_name}}"  name="firstname"  class="form-control" type="text" required>
+            </div>
+            <div class="form-group m-2">
+            <label>LastName</label><input value="{{user.last_name}}"  name="lastname"  class="form-control" type="text" required>
+            </div>
+            <div class="form-group m-2">
+            <label>Email</label><input value="{{user.email}}"  name="email"  class="form-control" type="email" required>
+            </div>
+            <div class="form-group m-2">
+            <label>Password</label><input value="{{user.password}}"  name="password"  class="form-control" type="password" required>
+            </div>
+            {% endfor %}
+            <div>
+                <input class='btn btn-primary m-2' type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

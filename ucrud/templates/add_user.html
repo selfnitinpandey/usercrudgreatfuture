@@ -1,0 +1,49 @@
+<!-- add base file -->
+{% extends 'base.html' %}
+
+
+<!-- add title -->
+{% block title %}AddUser{% endblock title %}
+<!-- msg -->
+{% block msg %}
+{% if messages %}
+<ul class="messages alert-primary">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock msg %}
+<style>
+
+</style>
+<!-- content body -->
+{% block content %}
+<div class="container" style="margin-left:30%;">
+    <div class="h-15 w-50" style="border:3px solid black;border-radius:20px;">
+        <form action="/add/" method="POST">
+            {% csrf_token %}
+          
+            <div class="form-group m-2">
+            <label>Username</label><input name="username" class='form-control' type="text" required>
+            </div>
+            <div class="form-group m-2">
+            <label>FirstName</label><input name="firstname"  class="form-control" type="text" required>
+            </div>
+            <div class="form-group m-2">
+            <label>LastName</label><input  name="lastname"  class="form-control" type="text" required>
+            </div>
+            <div class="form-group m-2">
+            <label>Email</label><input name="email"  class="form-control" type="email" required>
+            </div>
+            <div class="form-group m-2">
+            <label>Password</label><input name="password"  class="form-control" type="password" required>
+            </div>
+           
+            <div>
+                <input class='btn btn-primary m-2' type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
